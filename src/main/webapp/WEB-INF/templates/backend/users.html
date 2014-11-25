@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        ...
+    </head>
+    <body>
+        <div th:fragment="content">
+            <h1>Správa uživatelů</h1>
+
+            <a href="#" class="btn btn-success btn-sm pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Nový uživatel</a>
+            <br />
+            <br />
+
+            <table class="table table-condensed table-hover table-bordered">
+                <tr>
+                    <th>#</th>
+                    <th>E-mail</th>
+                    <th>Akce</th>
+                </tr>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}">#</td>
+                    <td th:text="${user.email}">E-mail</td>
+                    <td><a href="#" class="btn btn-info btn-sm">Upravit</a>&nbsp;<a href="#" class="btn btn-danger btn-sm">Smazat</a></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
