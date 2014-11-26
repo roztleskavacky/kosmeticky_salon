@@ -16,7 +16,9 @@
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
 
-    <context:component-scan base-package="com.roztleskavacky.kosmeticky_salon" />
+    <context:component-scan base-package="
+        com.roztleskavacky.kosmeticky_salon.controllers.frontend
+        com.roztleskavacky.kosmeticky_salon.controllers.backend" />
 
     <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/" />
@@ -44,13 +46,13 @@
         <mvc:interceptor>
             <mvc:mapping path="/admin/**"/>
             <mvc:exclude-mapping path="/admin/login" />
-            <bean class="com.roztleskavacky.kosmeticky_salon.ThymeleafBackendLayoutInterceptor"></bean>
+            <bean class="com.roztleskavacky.kosmeticky_salon.libs.ThymeleafBackendLayoutInterceptor"></bean>
         </mvc:interceptor>
 
         <mvc:interceptor>
             <mvc:mapping path="/**" />
             <mvc:exclude-mapping path="/admin/**" />
-            <bean class="com.roztleskavacky.kosmeticky_salon.ThymeleafFrontendLayoutInterceptor"></bean>
+            <bean class="com.roztleskavacky.kosmeticky_salon.libs.ThymeleafFrontendLayoutInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
 

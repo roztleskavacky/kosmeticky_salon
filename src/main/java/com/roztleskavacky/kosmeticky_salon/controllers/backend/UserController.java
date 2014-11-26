@@ -1,4 +1,4 @@
-package com.roztleskavacky.kosmeticky_salon;
+package com.roztleskavacky.kosmeticky_salon.controllers.backend;
 
 import com.roztleskavacky.kosmeticky_salon.model.User;
 import com.roztleskavacky.kosmeticky_salon.model.UserDAO;
@@ -11,15 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-public class LoginController {
+public class UserController {
 
     @Autowired
     private UserDAO UserDAO;
-
-    @RequestMapping(value = "admin/home", method = RequestMethod.GET)
-    public String homepage() {
-        return "backend/homepage";
-    }
 
     @RequestMapping(value = "admin/users", method = RequestMethod.GET)
     public ModelAndView users() {
@@ -29,13 +24,10 @@ public class LoginController {
         return model;
     }
 
-    @RequestMapping(value = "admin/logout", method = RequestMethod.GET)
-    public String logoutPage() {
-        return "backend/logout";
+    @RequestMapping(value = "admin/user/{id}/delete", method = RequestMethod.GET)
+    public String deleteUser() {
+        return "backend/todo";
     }
 
-    @RequestMapping(value = "admin/login", method = RequestMethod.GET)
-    public String loginPage() {
-        return "backend/login";
-    }
+
 }

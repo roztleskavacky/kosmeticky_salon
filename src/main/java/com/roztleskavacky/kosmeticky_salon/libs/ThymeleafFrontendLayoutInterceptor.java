@@ -1,5 +1,5 @@
 
-package com.roztleskavacky.kosmeticky_salon;
+package com.roztleskavacky.kosmeticky_salon.libs;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,9 +7,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 
-public class ThymeleafBackendLayoutInterceptor extends HandlerInterceptorAdapter {
+public class ThymeleafFrontendLayoutInterceptor extends HandlerInterceptorAdapter {
 
-    private static final String DEFAULT_LAYOUT = "backend/layout";
+    private static final String DEFAULT_LAYOUT = "frontend/layout";
     private static final String DEFAULT_VIEW_ATTRIBUTE_NAME = "view";
 
     @Override
@@ -20,6 +20,6 @@ public class ThymeleafBackendLayoutInterceptor extends HandlerInterceptorAdapter
         String originalViewName = modelAndView.getViewName();
         modelAndView.setViewName(DEFAULT_LAYOUT);
         modelAndView.addObject(DEFAULT_VIEW_ATTRIBUTE_NAME, originalViewName);
-        //System.err.println("backendInterceptor: --- " + originalViewName);
+        //System.err.println("frontendInterceptor: --- " + originalViewName);
     }
 }
