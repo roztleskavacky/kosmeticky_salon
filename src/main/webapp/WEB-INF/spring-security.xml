@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <security:global-method-security secured-annotations="enabled" />
+
+    <security:http auto-config="true">
+        <security:intercept-url pattern="/admin/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <security:intercept-url pattern="/admin/logout" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <security:intercept-url pattern="/resources/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <security:intercept-url pattern="/admin/home" access="ROLE_USER" />
+        <security:intercept-url pattern="/admin/**" access="ROLE_USER" />
+
+        <security:form-login login-page="/admin/login"
+                             login-processing-url="/admin/logging"
+                             default-target-url="/admin/home"
+                             always-use-default-target="true"
+                             authentication-failure-url="/admin/login?invalid=1"
+                             username-parameter="username"
+                             password-parameter="password" />
+        <security:logout logout-url="/admin/logout" logout-success-url="/admin/login?out=1" delete-cookies="JSESSIONID" invalidate-session="true"/>
+    </security:http>
+
+    <bean name="backendAuthenticationProvider" class="com.roztleskavacky.kosmeticky_salon.model.BackendAuthenticationProvider">
+        <constructor-arg>
+            <ref bean="userDAO" />
+        </constructor-arg>
+    </bean>
+
+    <security:authentication-manager>
+        <security:authentication-provider ref="backendAuthenticationProvider" />
+    </security:authentication-manager>
+
+</beans>
