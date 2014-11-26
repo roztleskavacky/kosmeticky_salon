@@ -4,8 +4,15 @@
         <title>Kosmetický salón</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet" />
+        <link th:href="@{/resources/css/datepicker3.css}" rel="stylesheet" />
+        <link th:href="@{/resources/css/clockpicker.css}" rel="stylesheet" />
+        <link th:href="@{/resources/css/styles.css}" rel="stylesheet" />
+        
         <script th:src="@{/resources/js/jquery.min.js}"></script>
         <script th:src="@{/resources/js/bootstrap.min.js}"></script>
+        <script th:src="@{/resources/js/bootstrap-datepicker.js}"></script>
+        <script th:src="@{/resources/js/clockpicker.js}"></script>
+        
     </head>
     <body>
         <div th:replace="${view} :: content">Page Content</div>

@@ -11,4 +11,24 @@ public class HomepageController {
     public String homepage() {
         return "frontend/index";
     }
+    
+    @RequestMapping("/reservation")
+    public String reservation() {
+        return "frontend/reservation";
+    }
+    
+    @RequestMapping("/registration")
+    public String registration() {
+        return "frontend/registration";
+    }
+    
+    @RequestMapping("/administration")
+    public String administration() {
+        return "frontend/administration";
+    }
+    
+    @RequestMapping("/creating")
+    public String creating() {
+        return "frontend/creating";
+    }
 }
