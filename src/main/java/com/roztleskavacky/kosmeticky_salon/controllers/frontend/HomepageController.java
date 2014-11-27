@@ -12,9 +12,9 @@ public class HomepageController {
         return "frontend/index";
     }
     
-    @RequestMapping("/reservation")
-    public String reservation() {
-        return "frontend/reservation";
+    @RequestMapping("/hostReservation")
+    public String hostReservation() {
+        return "frontend/hostReservation";
     }
     
     @RequestMapping("/registration")
@@ -30,5 +30,15 @@ public class HomepageController {
     @RequestMapping("/creating")
     public String creating() {
         return "frontend/creating";
+    }
+    
+    @RequestMapping("/contact")
+    public String contact() {
+        return "frontend/contact";
+    }
+    
+    @RequestMapping("/about")
+    public String about() {
+        return "frontend/about";
     }
 }
