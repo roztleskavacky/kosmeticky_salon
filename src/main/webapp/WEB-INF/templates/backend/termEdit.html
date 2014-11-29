@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
         ...
@@ -13,14 +18,18 @@
                 <div class="mainPanel">
                      <div class="panel panel-default">
                         <div class="panel-heading">
-                             <h3 class="panel-title">Úvodní strana administrace</h3>
+                             <h3 class="panel-title">Správa termínů</h3>
                         </div>
                         <div class="panel-body">
-                                
-                            
-                                
-                            
-                            
+                            <div class="btn-toolbar">
+                                <div class="btn-group">
+                                    <a th:href="@{/admin/term}" role="button" class="btn btn-primary">Přehled rezervací</a>
+                                    <a th:href="@{/admin/termEdit}" role="button" class="btn btn-primary">Editace termínů</a>
+                                    <a th:href="@{/admin/termCreate}" role="button" class="btn btn-primary">Tvorba termínů</a>
+                                    
+                                </div>
+
+                            </div>
                             
                             
                         </div>
@@ -48,5 +57,7 @@
                 </div>
             </div>
         </div>
+        
+        
     </body>
 </html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        ...
+    </head>
+    <body>
+        <div class="container" th:fragment="content">
+
+            <div class="bs-example">
+                
+                
+                
+                <div class="mainPanel">
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <h3 class="panel-title">Registrace</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="inputName">Jméno: </label>
+                                    <input type="text" class="form-control" id="inputEmail" placeholder="Jméno" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputSurname">Příjmení: </label>
+                                    <input type="text" class="form-control" id="inputEmail" placeholder="Příjmení" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputEmail">Email: </label>
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword">Heslo: </label>
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Heslo" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputRePassword">Heslo znovu: </label>
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Heslo pro kontrolu" />
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Registrovat</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <h3 class="panel-title">Kalendář</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="datetime">
+                                <script type="text/javascript">
+                                    $('#datetime').datepicker({
+                                        todayBtn: true,
+                                        weekStart: 1,
+                                        todayHighlight: true
+                                    });
+                                </script>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
