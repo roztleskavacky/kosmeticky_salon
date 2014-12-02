@@ -15,7 +15,7 @@ public class UserDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    //@Override
+
     @Transactional
     public List<User> list() {
         @SuppressWarnings("unchecked")
@@ -27,13 +27,19 @@ public class UserDAO {
     }
 
 
+    @Transactional
     public User getUserByEmail(String email) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         String query = "from User u where u.email = :email";
         User user =  (User) session.createQuery(query)
             .setString("email", email)
             .uniqueResult();
         return user;
+    }
+
+    @Transactional
+    public void saveUser(User user) {
+        this.sessionFactory.getCurrentSession().persist(user);
     }
 
 }

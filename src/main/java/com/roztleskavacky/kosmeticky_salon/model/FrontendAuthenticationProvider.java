@@ -12,11 +12,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public class BackendAuthenticationProvider implements AuthenticationProvider {
+public class FrontendAuthenticationProvider implements AuthenticationProvider {
 
     private UserDAO users;
 
-    public BackendAuthenticationProvider(UserDAO users) {
+    public FrontendAuthenticationProvider(UserDAO users) {
         this.users = users;
     }
 
@@ -29,7 +29,7 @@ public class BackendAuthenticationProvider implements AuthenticationProvider {
         if (user == null) throw new UsernameNotFoundException("Email '" + email + "' not found");
         if (!password.equals(user.getPassword())) throw new BadCredentialsException("Invalid credentials");
 
-        if (!user.getRole().getType().equals(Role.ROLE_STAFF) || !user.getRole().getType().equals(Role.ROLE_ADMIN)) throw new AuthorizationException("Only administrators can access");
+        //if (!user.getRole().getType().equals(Role.ROLE_USER)) throw new AuthorizationException("Restricted access to users only");
 
         List<GrantedAuthority> grantedAuths = new ArrayList<>();
         grantedAuths.add(new SimpleGrantedAuthority(user.getRole().getType()));

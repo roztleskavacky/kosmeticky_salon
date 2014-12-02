@@ -1,57 +1,51 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         ...
     </head>
     <body>
         <div class="container" th:fragment="content">
-
             <div class="bs-example">
-                
-                
-                
                 <div class="mainPanel">
                      <div class="panel panel-default">
                         <div class="panel-heading">
                              <h3 class="panel-title">Registrace</h3>
                         </div>
                         <div class="panel-body">
-                            <form>
+                            <form th:action="@{/registration/new}" th:object="${user}" method="POST">
                                 <div class="form-group">
                                     <label for="inputName">Jméno: </label>
-                                    <input type="text" class="form-control" id="inputEmail" placeholder="Jméno" />
+                                    <input type="text" class="form-control" id="inputName" th:field="*{name}" required="required" placeholder="Jméno" />
                                 </div>
                                 <div class="form-group">
                                     <label for="inputSurname">Příjmení: </label>
-                                    <input type="text" class="form-control" id="inputEmail" placeholder="Příjmení" />
+                                    <input type="text" class="form-control" id="inputSurname" th:field="*{surname}" required="required" placeholder="Příjmení" />
                                 </div>
 
-                                <div class="form-group">
+                                <div th:class="${#fields.hasErrors('email')} ? 'form-group has-error' : 'form-group'">
                                     <label for="inputEmail">Email: </label>
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword">Heslo: </label>
-                                    <input type="password" class="form-control" id="inputPassword" placeholder="Heslo" />
+                                    <input type="email" class="form-control" id="inputEmail" th:field="*{email}" required="required" placeholder="Email" />
+                                    <span class="help-block" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</span>
                                 </div>
 
-                                <div class="form-group">
+                                <div th:class="${#fields.hasErrors('password')} ? 'form-group has-error' : 'form-group'">
+                                    <label for="inputPassword">Heslo: </label>
+                                    <input type="password" class="form-control" id="inputPassword" th:field="*{password}" required="required" placeholder="Heslo" />
+                                    <span class="help-block" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</span>
+                                </div>
+
+                                <div th:class="${#fields.hasErrors('passwordConfirmation')} ? 'form-group has-error' : 'form-group'">
                                     <label for="inputRePassword">Heslo znovu: </label>
-                                    <input type="password" class="form-control" id="inputPassword" placeholder="Heslo pro kontrolu" />
+                                    <input type="password" class="form-control" id="inputRePassword" th:field="*{passwordConfirmation}" required="required" placeholder="Heslo pro kontrolu" />
+                                    <span class="help-block" th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}">Error</span>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Registrovat</button>
                             </form>
-
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="menu">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -68,7 +62,6 @@ and open the template in the editor.
                                 </script>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

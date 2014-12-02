@@ -18,8 +18,14 @@ public class ThymeleafFrontendLayoutInterceptor extends HandlerInterceptorAdapte
             return;
         }
         String originalViewName = modelAndView.getViewName();
+        if (isRedirectOrForward(originalViewName)) {
+            return;
+        }
         modelAndView.setViewName(DEFAULT_LAYOUT);
         modelAndView.addObject(DEFAULT_VIEW_ATTRIBUTE_NAME, originalViewName);
-        //System.err.println("frontendInterceptor: --- " + originalViewName);
+    }
+
+    private boolean isRedirectOrForward(String viewName) {
+        return viewName.startsWith("redirect:") || viewName.startsWith("forward:");
     }
 }
