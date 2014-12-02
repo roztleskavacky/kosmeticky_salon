@@ -9,12 +9,44 @@
 
     <security:global-method-security secured-annotations="enabled" />
 
-    <security:http auto-config="true">
-        <security:intercept-url pattern="/admin/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-        <security:intercept-url pattern="/admin/logout" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-        <security:intercept-url pattern="/resources/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-        <security:intercept-url pattern="/admin/home" access="ROLE_USER" />
-        <security:intercept-url pattern="/admin/**" access="ROLE_USER" />
+    <bean id="roleVoter" class="org.springframework.security.access.vote.RoleHierarchyVoter">
+        <constructor-arg ref="roleHierarchy" />
+    </bean>
+    
+    <bean id="roleHierarchy" class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+        <property name="hierarchy">
+            <value>
+                ROLE_ADMIN > ROLE_STAFF
+                ROLE_STAFF > ROLE_USER
+            </value>
+        </property>
+    </bean>
+
+    <bean id="defaultWebSecurityExpressionHandler"
+          class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler">
+          <property name="roleHierarchy" ref="roleHierarchy"/>
+    </bean>
+
+    <bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <property name="decisionVoters">
+            <list>
+                <ref bean="roleVoter" />
+                <bean class="org.springframework.security.web.access.expression.WebExpressionVoter">
+                    <property name="expressionHandler" ref="defaultWebSecurityExpressionHandler"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <security:http auto-config="true" pattern="/resources/**" use-expressions="true">
+            <security:intercept-url pattern="/resources/**" access="permitAll" />
+    </security:http>
+
+    <security:http auto-config="true" pattern="/admin/**" use-expressions="true">
+        <security:intercept-url pattern="/admin/login" access="permitAll" />
+        <security:intercept-url pattern="/admin/logout" access="permitAll" />
+        <security:intercept-url pattern="/admin/home" access="hasRole('ROLE_STAFF')" />
+        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_STAFF')" />
 
         <security:form-login login-page="/admin/login"
                              login-processing-url="/admin/logging"
@@ -23,7 +55,20 @@
                              authentication-failure-url="/admin/login?invalid=1"
                              username-parameter="username"
                              password-parameter="password" />
-        <security:logout logout-url="/admin/logout" logout-success-url="/admin/login?out=1" delete-cookies="JSESSIONID" invalidate-session="true"/>
+        <security:logout logout-url="/admin/logout" logout-success-url="/admin/login?out=1" />
+    </security:http>
+
+    <security:http auto-config="true" pattern="/**" use-expressions="true">
+        <security:intercept-url pattern="/**" access="permitAll" />
+
+        <security:form-login login-page="/"
+                             login-processing-url="/logging"
+                             default-target-url="/?success=1"
+                             always-use-default-target="true"
+                             authentication-failure-url="/?invalid=1"
+                             username-parameter="username"
+                             password-parameter="password" />
+        <security:logout logout-url="/logout" logout-success-url="/?out=1" />
     </security:http>
 
     <bean name="backendAuthenticationProvider" class="com.roztleskavacky.kosmeticky_salon.model.BackendAuthenticationProvider">
@@ -32,8 +77,15 @@
         </constructor-arg>
     </bean>
 
+    <bean name="frontendAuthenticationProvider" class="com.roztleskavacky.kosmeticky_salon.model.FrontendAuthenticationProvider">
+        <constructor-arg>
+            <ref bean="userDAO" />
+        </constructor-arg>
+    </bean>
+
     <security:authentication-manager>
-        <security:authentication-provider ref="backendAuthenticationProvider" />
+        <security:authentication-provider ref="frontendAuthenticationProvider" />
+        <!--<security:authentication-provider ref="backendAuthenticationProvider" />-->
     </security:authentication-manager>
 
 </beans>

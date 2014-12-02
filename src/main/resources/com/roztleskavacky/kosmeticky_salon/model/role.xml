@@ -3,15 +3,11 @@
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.roztleskavacky.kosmeticky_salon.model">
-    <class name="User" table="user">
+    <class name="Role" table="role">
         <id name="id" column="id">
             <generator class="native"/>
         </id>
         <property name="name" column="name" />
-        <property name="surname" column="surname" />
-        <property name="phone" column="phone" />
-        <property name="email" column="email" />
-        <property name="password" column="password" />
-        <many-to-one name="role" column="role" class="Role" not-null="true" lazy="false" />
+        <property name="type" column="type" />
     </class>
 </hibernate-mapping>

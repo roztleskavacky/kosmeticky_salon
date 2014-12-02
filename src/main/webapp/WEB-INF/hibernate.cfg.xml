@@ -6,6 +6,7 @@
     <session-factory>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
-        <mapping resource="com/roztleskavacky/kosmeticky_salon/model/user.xml"/>
+        <mapping resource="com/roztleskavacky/kosmeticky_salon/model/user.xml" />
+        <mapping resource="com/roztleskavacky/kosmeticky_salon/model/role.xml" />
     </session-factory>
 </hibernate-configuration>

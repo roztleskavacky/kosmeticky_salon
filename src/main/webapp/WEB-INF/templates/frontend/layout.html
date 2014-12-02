@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Kosmetický salón</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -8,16 +8,16 @@
         <link th:href="@{/resources/css/datepicker3.css}" rel="stylesheet" />
         <link th:href="@{/resources/css/clockpicker.css}" rel="stylesheet" />
         <link th:href="@{/resources/css/styles.css}" rel="stylesheet" />
-        
+
         <script th:src="@{/resources/js/jquery.min.js}"></script>
         <script th:src="@{/resources/js/bootstrap.min.js}"></script>
         <script th:src="@{/resources/js/bootstrap-datepicker.js}"></script>
         <script th:src="@{/resources/js/clockpicker.js}"></script>
-        
+
     </head>
     <body>
         <div class="container">
-            
+
             <nav role="navigation" class="navbar navbar-default navbar-inverse">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -35,33 +35,29 @@
                         <li><a th:href="@{/hostReservation}">Rezervace</a></li>
                         <li><a th:href="@{/about}">O nás</a></li>
                         <li><a th:href="@{/contact}">Kontakty</a></li>
-                        
+
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a>Nepřihlášen</a></li>
-                        <!--
-                        <li><a href="#">Jana Nováková</a></li>
-                        -->
-                         <li class="dropdown">
+                        <li th:if="${#authorization.expression('isAuthenticated()')}"><p class="navbar-text" sec:authentication="name"></p></li>
+                        <li th:if="${#authorization.expression('isAuthenticated()')}"><a href="#" th:href="@{/logout}">Odhlásit</a></li>
+                        <li th:if="not ${#authorization.expression('isAuthenticated()')}" class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Přihlášení<b class="caret"></b></a>
                             <ul role="menu" class="dropdown-menu" style="padding: 10px;">
-                                
-                                <div th:if="${param.invalid}" class="alert alert-danger">Chybné přihlašovací údaje</div>
-                                <div th:if="${param.out}" class="alert alert-success">Odhlášení proběhlo úspěšně</div>
-                                <div th:if="${param.time}" class="alert alert-info">Byl jste odhlášen z důvodu nečinnosti</div>
-                                
-                                <form role="form" th:action="@{/admin/logging}" method="POST">
-                                                 <div class="form-group">
-                                                        <label for="email">Email</label>
-                                                        <input type="email" class="form-control" placeholder="Email" id="email" name="username" />
-                                                        <label for="password">Heslo</label>
-                                                        <input type="password" class="form-control" placeholder="Heslo" id="password" name="password" />
-                                                        
-                                                </div>
-                                           <button type="submit" class="btn btn-default">Přihlásit</button>
-                                           
-                                           <a th:href="@{/registration}">Registrovat</a>
+
+                                <form action="#" th:action="@{/logging}" method="POST">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" placeholder="Email" id="email" name="username" />
+                                        <label for="password">Heslo</label>
+                                        <input type="password" class="form-control" placeholder="Heslo" id="password" name="password" />
+                                    </div>
+
+                                    <button type="submit" class="btn btn-default">Přihlásit</button>
+
+                                    <br />
+
+                                    <a th:href="@{/registration}">Registrovat</a>
                                 </form>
 
                             </ul>
@@ -69,22 +65,20 @@
                     </ul>
                 </div>
             </nav>
-            
-            
-        <!-- BANNER -->
-            
+
             <div class="banner">
-                <img src="resources/img/banner.jpg" alt="banner"  />
+                <img src="#" th:src="@{/resources/img/banner.jpg}" alt="banner" />
             </div>
-            
-        <!-- BANNER -->     
-        
-        
-        
+
+            <div th:if="${flashMessage != null}" class="alert alert-success" th:text="${flashMessage}">Text</div>
+
+            <div th:if="${param.invalid}" class="alert alert-danger">Chybné přihlašovací údaje</div>
+            <div th:if="${param.success}" class="alert alert-success">Přihlášení proběhlo úspěšně</div>
+            <div th:if="${param.out}" class="alert alert-success">Odhlášení proběhlo úspěšně</div>
+            <div th:if="${param.time}" class="alert alert-info">Byl jste odhlášen z důvodu nečinnosti</div>
+
             <div th:replace="${view} :: content">Page Content</div>
-            
-           
-            
+
         </div>
     </body>
 </html>
