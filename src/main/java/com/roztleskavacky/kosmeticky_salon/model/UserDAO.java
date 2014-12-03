@@ -26,6 +26,15 @@ public class UserDAO {
         return listUser;
     }
 
+    @Transactional
+    public User getUserById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        String query = "from User u where u.id = :id";
+        User user =  (User) session.createQuery(query)
+            .setInteger("id", id)
+            .uniqueResult();
+        return user;
+    }
 
     @Transactional
     public User getUserByEmail(String email) {
@@ -37,9 +46,15 @@ public class UserDAO {
         return user;
     }
 
+
     @Transactional
     public void saveUser(User user) {
         this.sessionFactory.getCurrentSession().persist(user);
     }
 
+
+    @Transactional
+    public void delete(User user) {
+        this.sessionFactory.getCurrentSession().delete(user);
+    }
 }
