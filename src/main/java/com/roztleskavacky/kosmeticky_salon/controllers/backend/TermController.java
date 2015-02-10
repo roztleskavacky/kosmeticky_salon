@@ -13,9 +13,9 @@ public class TermController {
         return "backend/term";
     }
     
-    @RequestMapping("admin/termEdit")
-    public String termEdit() {
-        return "backend/termEdit";
+    @RequestMapping("admin/termList")
+    public String termList() {
+        return "backend/termList";
     }
     
     @RequestMapping("admin/termCreate")

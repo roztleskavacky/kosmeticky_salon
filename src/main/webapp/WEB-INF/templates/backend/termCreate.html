@@ -4,432 +4,464 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+
+<!--
+Variables of FORM:
+    service_list
+    
+    !! NUMBERS 1 TO 5
+    check1 - checkbox 1
+    timeFrom1
+    timeTo1
+    worker1
+
+    repeatAction - radio button - VALUES: onetime, multiply
+    
+    onetimeDate
+    
+    startDate
+    endDate
+    
+    Monday
+    Tuesday
+    Wednesday
+    Thursday
+    Friday
+    Saturday
+    Sunday
+-->
+
+
 <html>
     <head>
         ...
     </head>
     <body>
+        <div>
         <div class="container" th:fragment="content">
 
             <div class="bs-example">
-                
-                
-                
+
+
+
                 <div class="mainPanel">
-                     <div class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
-                             <h3 class="panel-title">Správa termínů</h3>
+                            <h3 class="panel-title">Správa termínů</h3>
                         </div>
                         <div class="panel-body">
                             <div class="btn-toolbar">
                                 <div class="btn-group">
                                     <a th:href="@{/admin/term}" role="button" class="btn btn-primary">Přehled rezervací</a>
-                                    <a th:href="@{/admin/termEdit}" role="button" class="btn btn-primary">Editace termínů</a>
+                                    <a th:href="@{/admin/termList}" role="button" class="btn btn-primary">Přehled termínů</a>
                                     <a th:href="@{/admin/termCreate}" role="button" class="btn btn-primary">Tvorba termínů</a>
+
+                                </div>
+
+                                <br />
+                                <br />
+                                <br />
+
+                                
+                                <form method="GET">
                                     
-                                </div>
-                           
-                            <br />
-                            <br />
-                            <br />
-                            
-                            <label>Vyberte službu</label>
-                            <select id = "service_list">
-                              <option value = "1">Čištění pleti ultrazvukem</option>
-                              <option value = "2">Masáž obličeje</option>
-                              <option value = "3">Úprava a barvení obočí</option>
-                              <option value = "4">Barvení řas</option>
-                              <option value = "5">Nehtová modeláž</option>
-                            </select>
-
-                            <br />
-                            <br />
-                            
-                            <div class="line">
-                                
-                                <div style="float: left; padding-right: 10px">
-                                   <input type="checkbox" /> 
-                                </div>
-                                
-                                <div style="float: left; padding-right: 10px">
                                     
-                                    Od:
-                                    <br />
-                                    <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-
-                                            <input type="text" class="form-control" value="13:14" />
-                                            <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-time"></span>
-                                            </span>
-                                    </div>
-                                    <script type="text/javascript">
-                                        $('.clockpicker').clockpicker({
-                                            placement: 'bottom',
-
-                                        });
-                                    </script>
-                                
-
-                                </div>
-
-                                <div style="float: left; padding-right: 10px">
-                                    
-                                    Do:
-                                    <br />
-                                    <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-                                            <input type="text" class="form-control" value="13:14" />
-                                            <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-time"></span>
-                                            </span>
-                                    </div>
-                                    <script type="text/javascript">
-                                        $('.clockpicker').clockpicker({
-                                            placement: 'bottom',
-
-                                        });
-                                    </script>
-                                
-                                </div>
-                                
-                                <div>
-                                    <label>Pracovník: </label>
-                                    <select id = "worker">
-                                        <option value = "1">Nováková</option>
-                                        <option value = "2">Zelená</option>
-                                        <option value = "3">Nová</option>
-                                        <option value = "4">Mladá</option>
-                                        <option value = "5">Kramná</option>
+                                    <label>Vyberte službu</label>
+                                    <select name = "service_list">
+                                        <option value = "1">Čištění pleti ultrazvukem</option>
+                                        <option value = "2">Masáž obličeje</option>
+                                        <option value = "3">Úprava a barvení obočí</option>
+                                        <option value = "4">Barvení řas</option>
+                                        <option value = "5">Nehtová modeláž</option>
                                     </select>
-                                </div>
-                            </div>
-                            
-                            <div class="line">
-                                
-                                <div style="float: left; padding-right: 10px">
-                                   <input type="checkbox" /> 
-                                </div>
-                                
-                                <div style="float: left; padding-right: 10px">
-                                    
-                                    Od:
+
                                     <br />
-                                    <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-
-                                            <input type="text" class="form-control" value="13:14" />
-                                            <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-time"></span>
-                                            </span>
-                                    </div>
-                                    <script type="text/javascript">
-                                        $('.clockpicker').clockpicker({
-                                            placement: 'bottom',
-
-                                        });
-                                    </script>
-                                
-
-                                </div>
-
-                                <div style="float: left; padding-right: 10px">
-                                    
-                                    Do:
                                     <br />
-                                    <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-                                            <input type="text" class="form-control" value="13:14" />
-                                            <span class="input-group-addon">
+
+                                    <div class="line">
+
+                                        <div style="float: left; padding-right: 10px">
+                                            <input name="check1" type="checkbox" /> 
+                                        </div>
+
+                                        <div style="float: left; padding-right: 10px">
+
+                                            Od:
+                                            <br />
+                                            <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+
+                                                <input name="timeFrom1" type="text" class="form-control" value="00:00" />
+                                                <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-time"></span>
-                                            </span>
-                                    </div>
-                                    <script type="text/javascript">
-                                        $('.clockpicker').clockpicker({
-                                            placement: 'bottom',
+                                                </span>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $('.clockpicker').clockpicker({
+                                                    placement: 'bottom',
+                                                });
+                                            </script>
 
-                                        });
-                                    </script>
-                                
-                                </div>
-                                
-                                <div>
-                                    <label>Pracovník: </label>
-                                    <select id = "worker">
-                                        <option value = "1">Nováková</option>
-                                        <option value = "2">Zelená</option>
-                                        <option value = "3">Nová</option>
-                                        <option value = "4">Mladá</option>
-                                        <option value = "5">Kramná</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="line">
-                                
-                                <div style="float: left; padding-right: 10px">
-                                   <input type="checkbox" /> 
-                                </div>
-                                
-                                <div style="float: left; padding-right: 10px">
-                                    
-                                    Od:
-                                    <br />
-                                    <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
 
-                                            <input type="text" class="form-control" value="13:14" />
-                                            <span class="input-group-addon">
+                                        </div>
+
+                                        <div style="float: left; padding-right: 10px">
+
+                                            Do:
+                                            <br />
+                                            <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                                                <input name="timeTo1" type="text" class="form-control" value="00:00" />
+                                                <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-time"></span>
-                                            </span>
+                                                </span>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $('.clockpicker').clockpicker({
+                                                    placement: 'bottom',
+                                                });
+                                            </script>
+
+                                        </div>
+
+                                        <div>
+                                            <label>Pracovník: </label>
+                                            <select name = "worker1">
+                                                <option value = "1">Nováková</option>
+                                                <option value = "2">Zelená</option>
+                                                <option value = "3">Nová</option>
+                                                <option value = "4">Mladá</option>
+                                                <option value = "5">Kramná</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <script type="text/javascript">
-                                        $('.clockpicker').clockpicker({
-                                            placement: 'bottom',
 
-                                        });
-                                    </script>
-                                
-
-                                </div>
-
-                                <div style="float: left; padding-right: 10px">
+                                    <!-- Second term -->
                                     
-                                    Do:
-                                    <br />
-                                    <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-                                            <input type="text" class="form-control" value="13:14" />
-                                            <span class="input-group-addon">
+                                    <div class="line">
+
+                                        <div style="float: left; padding-right: 10px">
+                                            <input name="check2" type="checkbox" /> 
+                                        </div>
+
+                                        <div style="float: left; padding-right: 10px">
+
+                                            Od:
+                                            <br />
+                                            <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+
+                                                <input name="timeFrom2" type="text" class="form-control" value="00:00" />
+                                                <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-time"></span>
-                                            </span>
-                                    </div>
-                                    <script type="text/javascript">
-                                        $('.clockpicker').clockpicker({
-                                            placement: 'bottom',
+                                                </span>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $('.clockpicker').clockpicker({
+                                                    placement: 'bottom',
+                                                });
+                                            </script>
 
-                                        });
-                                    </script>
-                                
-                                </div>
-                                
-                                <div>
-                                    <label>Pracovník: </label>
-                                    <select id = "worker">
-                                        <option value = "1">Nováková</option>
-                                        <option value = "2">Zelená</option>
-                                        <option value = "3">Nová</option>
-                                        <option value = "4">Mladá</option>
-                                        <option value = "5">Kramná</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="line">
-                                
-                                <div style="float: left; padding-right: 10px">
-                                   <input type="checkbox" /> 
-                                </div>
-                                
-                                <div style="float: left; padding-right: 10px">
-                                    
-                                    Od:
-                                    <br />
-                                    <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
 
-                                            <input type="text" class="form-control" value="13:14" />
-                                            <span class="input-group-addon">
+                                        </div>
+
+                                        <div style="float: left; padding-right: 10px">
+
+                                            Do:
+                                            <br />
+                                            <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                                                <input name="timeTo2" type="text" class="form-control" value="00:00" />
+                                                <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-time"></span>
-                                            </span>
+                                                </span>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $('.clockpicker').clockpicker({
+                                                    placement: 'bottom',
+                                                });
+                                            </script>
+
+                                        </div>
+
+                                        <div>
+                                            <label>Pracovník: </label>
+                                            <select name = "worker2">
+                                                <option value = "1">Nováková</option>
+                                                <option value = "2">Zelená</option>
+                                                <option value = "3">Nová</option>
+                                                <option value = "4">Mladá</option>
+                                                <option value = "5">Kramná</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <script type="text/javascript">
-                                        $('.clockpicker').clockpicker({
-                                            placement: 'bottom',
-
-                                        });
-                                    </script>
-                                
-
-                                </div>
-
-                                <div style="float: left; padding-right: 10px">
                                     
-                                    Do:
-                                    <br />
-                                    <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-                                            <input type="text" class="form-control" value="13:14" />
-                                            <span class="input-group-addon">
+                                    <div class="line">
+
+                                        <div style="float: left; padding-right: 10px">
+                                            <input name="check3" type="checkbox" /> 
+                                        </div>
+
+                                        <div style="float: left; padding-right: 10px">
+
+                                            Od:
+                                            <br />
+                                            <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+
+                                                <input name="timeFrom3" type="text" class="form-control" value="00:00" />
+                                                <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-time"></span>
-                                            </span>
-                                    </div>
-                                    <script type="text/javascript">
-                                        $('.clockpicker').clockpicker({
-                                            placement: 'bottom',
+                                                </span>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $('.clockpicker').clockpicker({
+                                                    placement: 'bottom',
+                                                });
+                                            </script>
 
-                                        });
-                                    </script>
-                                
-                                </div>
-                                
-                                <div>
-                                    <label>Pracovník: </label>
-                                    <select id = "worker">
-                                        <option value = "1">Nováková</option>
-                                        <option value = "2">Zelená</option>
-                                        <option value = "3">Nová</option>
-                                        <option value = "4">Mladá</option>
-                                        <option value = "5">Kramná</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="line">
-                                
-                                <div style="float: left; padding-right: 10px">
-                                   <input type="checkbox" /> 
-                                </div>
-                                
-                                <div style="float: left; padding-right: 10px">
-                                    
-                                    Od:
-                                    <br />
-                                    <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
 
-                                            <input type="text" class="form-control" value="13:14" />
-                                            <span class="input-group-addon">
+                                        </div>
+
+                                        <div style="float: left; padding-right: 10px">
+
+                                            Do:
+                                            <br />
+                                            <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                                                <input name="timeTo3" type="text" class="form-control" value="00:00" />
+                                                <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-time"></span>
-                                            </span>
+                                                </span>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $('.clockpicker').clockpicker({
+                                                    placement: 'bottom',
+                                                });
+                                            </script>
+
+                                        </div>
+
+                                        <div>
+                                            <label>Pracovník: </label>
+                                            <select name = "worker3">
+                                                <option value = "1">Nováková</option>
+                                                <option value = "2">Zelená</option>
+                                                <option value = "3">Nová</option>
+                                                <option value = "4">Mladá</option>
+                                                <option value = "5">Kramná</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <script type="text/javascript">
-                                        $('.clockpicker').clockpicker({
-                                            placement: 'bottom',
 
-                                        });
-                                    </script>
-                                
+                                    <div class="line">
 
-                                </div>
+                                        <div style="float: left; padding-right: 10px">
+                                            <input name="check4" type="checkbox" /> 
+                                        </div>
 
-                                <div style="float: left; padding-right: 10px">
-                                    
-                                    Do:
-                                    <br />
-                                    <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-                                            <input type="text" class="form-control" value="13:14" />
-                                            <span class="input-group-addon">
+                                        <div style="float: left; padding-right: 10px">
+
+                                            Od:
+                                            <br />
+                                            <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+
+                                                <input name="timeFrom4" type="text" class="form-control" value="00:00" />
+                                                <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-time"></span>
-                                            </span>
-                                    </div>
-                                    <script type="text/javascript">
-                                        $('.clockpicker').clockpicker({
-                                            placement: 'bottom',
+                                                </span>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $('.clockpicker').clockpicker({
+                                                    placement: 'bottom',
+                                                });
+                                            </script>
 
-                                        });
-                                    </script>
-                                
-                                </div>
-                                
-                                <div>
-                                    <label>Pracovník: </label>
-                                    <select id = "worker">
-                                        <option value = "1">Nováková</option>
-                                        <option value = "2">Zelená</option>
-                                        <option value = "3">Nová</option>
-                                        <option value = "4">Mladá</option>
-                                        <option value = "5">Kramná</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                
-                                
-                                <form role="form">
-                                    <div class="radio">
-                                      <label><input type="radio" name="optradio" />Jednorázově</label>
-                                      
-                                      <input style="width: 200px" id="input" type="text" class="form-control" value="1/1/2014" />
-                                        <script type="text/javascript">
-                                            $('#input').datepicker({
-                                                format: "dd/mm/yyyy",
-                                                weekStart: 1,
-                                                todayBtn: true,
-                                                autoclose: true,
-                                                todayHighlight: true
-                                            });
-                                        </script>
-                            
-                                      
+
+                                        </div>
+
+                                        <div style="float: left; padding-right: 10px">
+
+                                            Do:
+                                            <br />
+                                            <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                                                <input name="timeTo4" type="text" class="form-control" value="00:00" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-time"></span>
+                                                </span>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $('.clockpicker').clockpicker({
+                                                    placement: 'bottom',
+                                                });
+                                            </script>
+
+                                        </div>
+
+                                        <div>
+                                            <label>Pracovník: </label>
+                                            <select name = "worker4">
+                                                <option value = "1">Nováková</option>
+                                                <option value = "2">Zelená</option>
+                                                <option value = "3">Nová</option>
+                                                <option value = "4">Mladá</option>
+                                                <option value = "5">Kramná</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     
-                                     
-                                    
-                                    <div class="radio">
-                                      <label><input type="radio" name="optradio" />Opakovaně</label>
-                                      <br /> 
-                                      
-                                      <div class="input-daterange input-group" id="datepicker">
-                                            <input style="width: 200px" type="text" class="input form-control" name="start" />
-                                            <span class="input-group-addon">do</span>
-                                            <input style="width: 200px" type="text" class="input form-control" name="end" />
-                                      </div>
-                                      
-                                      <script type="text/javascript">
-                                            $('#datepicker').datepicker({
-                                                format: "dd/mm/yyyy",
-                                                weekStart: 1,
-                                                todayBtn: true,
-                                                autoclose: true,
-                                                todayHighlight: true
-                                            });
-                                      </script>
-                                      
-                                      <br /> 
-                                      <br /> 
-                                      
-                                      <div>
-                                          Po: <input type="checkbox" />
-                                          Út: <input type="checkbox" />
-                                          St: <input type="checkbox" />
-                                          Čt: <input type="checkbox" />
-                                          Pá: <input type="checkbox" />
-                                          So: <input type="checkbox" />
-                                          Ne: <input type="checkbox" />
-                                      </div>                                      
+                                    <div class="line">
+
+                                        <div style="float: left; padding-right: 10px">
+                                            <input id="check5" type="checkbox" /> 
+                                        </div>
+
+                                        <div style="float: left; padding-right: 10px">
+
+                                            Od:
+                                            <br />
+                                            <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+
+                                                <input id="timeFrom5" type="text" class="form-control" value="00:00" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-time"></span>
+                                                </span>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $('.clockpicker').clockpicker({
+                                                    placement: 'bottom',
+                                                });
+                                            </script>
+
+
+                                        </div>
+
+                                        <div style="float: left; padding-right: 10px">
+
+                                            Do:
+                                            <br />
+                                            <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                                                <input id="timeTo5" type="text" class="form-control" value="00:00" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-time"></span>
+                                                </span>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $('.clockpicker').clockpicker({
+                                                    placement: 'bottom',
+                                                });
+                                            </script>
+
+                                        </div>
+
+                                        <div>
+                                            <label>Pracovník: </label>
+                                            <select id = "worker5">
+                                                <option value = "1">Nováková</option>
+                                                <option value = "2">Zelená</option>
+                                                <option value = "3">Nová</option>
+                                                <option value = "4">Mladá</option>
+                                                <option value = "5">Kramná</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     
+                                        <div class="radio">
+                                            <label><input type="radio" name="repeatAction" value="onetime" checked="checked"/>Jednorázově</label>
+
+                                            <input style="width: 200px" id="onetime" name="onetimeDate" type="text" class="form-control" value="1/1/2014" />
+                                            
+                                            <script type="text/javascript">
+                                                $('#onetime').datepicker({
+                                                    format: "dd/mm/yyyy",
+                                                    weekStart: 1,
+                                                    todayBtn: true,
+                                                    autoclose: true,
+                                                    todayHighlight: true
+                                                });
+                                            </script>
+                                            
+
+                                        </div>
+
+
+
+                                        <div class="radio">
+                                            <label><input type="radio" name="repeatAction" value="multiply" />Opakovaně</label>
+                                            <br /> 
+
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input style="width: 200px" type="text" class="input form-control" value="1/1/2014" id="startDate" name="startDate" />
+                                                <span class="input-group-addon">do</span>
+                                                <input style="width: 200px" type="text" class="input form-control" value="1/1/2014" id="endDate" name="endDate" />
+                                            </div>
+
+                                            <script type="text/javascript">
+                                                $('#startDate').datepicker({
+                                                    format: "dd/mm/yyyy",
+                                                    weekStart: 1,
+                                                    todayBtn: true,
+                                                    autoclose: true,
+                                                    todayHighlight: true
+                                                });
+                                            </script>
+                                            
+                                            <script type="text/javascript">
+                                                $('#endDate').datepicker({
+                                                    format: "dd/mm/yyyy",
+                                                    weekStart: 1,
+                                                    todayBtn: true,
+                                                    autoclose: true,
+                                                    todayHighlight: true
+                                                });
+                                            </script>
+
+                                            <br /> 
+                                            <br /> 
+
+                                            <div>
+                                                Po: <input name="Monday" type="checkbox" />
+                                                Út: <input name="Tuesday" type="checkbox" />
+                                                St: <input name="Wednesday" type="checkbox" />
+                                                Čt: <input name="Thursday" type="checkbox" />
+                                                Pá: <input name="Friday" type="checkbox" />
+                                                So: <input name="Saturday" type="checkbox" />
+                                                Ne: <input name="Sunday"  type="checkbox" />
+                                            </div>                                      
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Uložit</button>  
                                 </form>
-                                
-                                <button type="button" class="btn btn-primary">Uložit</button>    
-                                
-                                
+
+
+
+
                             </div>
-                            
-                            
-                            
+
+
+
                         </div>
-                            
-                            
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="menu">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                             <h3 class="panel-title">Kalendář</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="datetime">
-                                <script type="text/javascript">
-                                    $('#datetime').datepicker({
-                                        todayBtn: true,
-                                        weekStart: 1,
-                                        todayHighlight: true
-                                    });
-                                </script>
-                            </div>
-                        </div>
+
 
                     </div>
                 </div>
             </div>
+
+            <div class="menu">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Kalendář</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="datetime">
+                            <script type="text/javascript">
+                                $('#datetime').datepicker({
+                                    todayBtn: true,
+                                    weekStart: 1,
+                                    todayHighlight: true
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-        
-        
-    </body>
+    </div>
+
+
+</body>
 </html>
