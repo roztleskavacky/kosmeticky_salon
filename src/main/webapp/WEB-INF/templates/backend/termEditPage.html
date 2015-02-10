@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        ...
+    </head>
+    <body>
+        <div class="container" th:fragment="content">
+            <div class="bs-example">
+                <div class="mainPanel">
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <h3 class="panel-title">Editace termínu</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form  method="GET">
+                                
+                                <div style="float: left; padding-right: 10px">
+
+                                    Od:
+                                    <br />
+                                    <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+
+                                        <input name="timeFrom" type="text" class="form-control" value="00:00" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                    <script type="text/javascript">
+                                        $('.clockpicker').clockpicker({
+                                            placement: 'bottom',
+                                        });
+                                    </script>
+
+
+                                </div>
+
+                                <div style="float: left; padding-right: 10px">
+
+                                    Do:
+                                    <br />
+                                    <div class="time input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                                        <input name="timeTo" type="text" class="form-control" value="00:00" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                    <script type="text/javascript">
+                                        $('.clockpicker').clockpicker({
+                                            placement: 'bottom',
+                                        });
+                                    </script>
+
+                                </div>
+
+                                <div>
+                                    <label>Pracovník: </label>
+                                    <select name = "worker">
+                                        <option value = "1">Nováková</option>
+                                        <option value = "2">Zelená</option>
+                                        <option value = "3">Nová</option>
+                                        <option value = "4">Mladá</option>
+                                        <option value = "5">Kramná</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label>Datum:</label>
+
+                                    <input style="width: 200px" name="Date" type="text" class="form-control" value="1/1/2014" />
+                                    <script type="text/javascript">
+                                        $('#input').datepicker({
+                                            format: "dd/mm/yyyy",
+                                            weekStart: 1,
+                                            todayBtn: true,
+                                            autoclose: true,
+                                            todayHighlight: true
+                                        });
+                                    </script>
+
+
+                                </div>
+                                
+                                
+
+                                <button type="submit" class="btn btn-primary">Uložit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <h3 class="panel-title">Kalendář</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="datetime">
+                                <script type="text/javascript">
+                                    $('#datetime').datepicker({
+                                        todayBtn: true,
+                                        weekStart: 1,
+                                        todayHighlight: true
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

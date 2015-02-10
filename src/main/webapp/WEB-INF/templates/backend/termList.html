@@ -33,18 +33,19 @@ and open the template in the editor.
                             
                             <br />
                             <br />
-                            <br />
                             
-                            <label>Vyberte službu</label>
-                                    <select name = "service_list">
-                                        <option value = "1">Čištění pleti ultrazvukem</option>
-                                        <option value = "2">Masáž obličeje</option>
-                                        <option value = "3">Úprava a barvení obočí</option>
-                                        <option value = "4">Barvení řas</option>
-                                        <option value = "5">Nehtová modeláž</option>
-                            </select>
-                            
-                            <a class="btn btn-info btn-sm">Filtrovat</a>
+                            <div>
+                                <label>Pracovník: </label>
+                                <select name = "worker1">
+                                    <option value = "1">Nováková</option>
+                                    <option value = "2">Zelená</option>
+                                    <option value = "3">Nová</option>
+                                    <option value = "4">Mladá</option>
+                                    <option value = "5">Kramná</option>
+                                </select>
+                                
+                                <a class="btn btn-info btn-sm">Filtrovat</a>
+                            </div>
                             
                             <br />
                             <br />
@@ -57,7 +58,8 @@ and open the template in the editor.
                                         <th class="col-sm-1" >Do</th>
                                         <th class="col-sm-1" >Zaměstnanec</th>
                                         <th class="col-sm-1" >Služba</th>
-                                        <th class="col-sm-2" >Přijmení zák.</th>
+                                        <th class="col-sm-1" >Upravit/Smazat</th>
+                                        
                                     </tr>
                                     
                                     <tr>
@@ -66,24 +68,33 @@ and open the template in the editor.
                                         <td>12:00</td>
                                         <td>Zelená</td>
                                         <td>Barvení řas</td>
-                                        <td>Novák</td>
+                                        <td>
+                                        <a href="#"  class="btn btn-info btn-sm">Upravit</a>
+                                        &nbsp;
+                                        <a href="#"  class="btn btn-danger btn-sm" onclick="return confirm('Opravdu chcete smazat termín?')">Smazat</a>
+                                    </td>
                                         
                                     </tr>
                                     
                                     <!--
-                                    <tr th:each="reservation : ${reservation}">
-                                        <td th:text="${reservation.id}">#</td>
-                                        <td th:text="${reservation.from}">Od</td>
-                                        <td th:text="${reservation.to}">Do</td>
-                                        <td th:text="${reservation.worker}">Zaměstnanec</td>
-                                        <td th:text="${reservation.service}">Služba</td>
-                                        <td th:text="${reservation.surname}">Prijmení zák.</td>
+                                    <tr th:each="term : ${term}">
+                                        <td th:text="${term.id}">#</td>
+                                        <td th:text="${term.from}">Od</td>
+                                        <td th:text="${term.to}">Do</td>
+                                        <td th:text="${term.worker}">Zaměstnanec</td>
+                                        <td th:text="${term.service}">Služba</td>
+                                        <td>
+                                        <a href="#" th:href="" class="btn btn-info btn-sm">Upravit</a>
+                                        &nbsp;
+                                        <a href="#" th:href="" class="btn btn-danger btn-sm" onclick="return confirm('Opravdu chcete smazat termín?')">Smazat</a>
+                                    </td>
                                         
                                     </tr>
                                     -->
                                 </thead>
                             </table>
-
+                            
+                            
                         </div>
                     </div>
                 </div>
